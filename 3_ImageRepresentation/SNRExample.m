@@ -1,15 +1,15 @@
 clear
 cd SNR % 切换路径，change directory
-% 保存图片起始位置
+% 利用列向量保存图片起始位置
 headersize = zeros(8, 1);
 headersize(1, 1) = 1384;
-headersize(1, 2) = 1402;
-headersize(1, 3) = 1390;
-headersize(1, 4) = 1386;
-headersize(1, 5) = 984;
-headersize(1, 6) = 988;
-headersize(1, 7) = 984;
-headersize(1, 8) = 988;
+headersize(2, 1) = 1402;
+headersize(3, 1) = 1390;
+headersize(4, 1) = 1386;
+headersize(5, 1) = 984;
+headersize(6, 1) = 988;
+headersize(7, 1) = 984;
+headersize(8, 1) = 988;
 
 snrs = zeros(8, 1);
 for i = 1:8
