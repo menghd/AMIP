@@ -7,7 +7,7 @@ for i = 1:652
     grayimg(i, j) = 0.3*colorimg(i, j, 1) + 0.59*colorimg(i, j, 2) + 0.11*colorimg(i, j, 3); % 将RGB对应值逐个转为灰度值
   end
 end % 可利用':'简写矩阵循环
-% grayimg(:) = .3*colorimg(:,:,1) + .59*colorimg(:,:,2) +.11*colorimg(:,:,3);
+% grayimg(:) = .3*colorimg(:,:,1) + .59*colorimg(:,:,2) + .11*colorimg(:,:,3);
 
 % 转换为64灰度值
 MinmumValue = min(min(grayimg));
