@@ -1,13 +1,15 @@
-clear
+clear % 代码一长bug就多起来了，一定要实际运行看看效果，不一样一定有问题
 fp = fopen('LungCT.dcm');
-fseek(fp, (-512*512*2), 'eof'); % 反向查找，eof可以用1替换，注意offset中的负号
+fseek(fp, (-512*512*2), 1); % 反向查找，eof可以用1替换，注意offset中的负号
 img = zeros(512);
 img(:) = fread(fp, (512*512), 'short');
 img = transpose(img);
 fclose(fp);
 
 % 显示原图像
-[orimax orimin] = [max(img(:)) min(img(:))];
+orimax = max(img(:))
+orimin = min(img(:))
+% 此处不能直接用两数列对应值相等赋值变量
 depth = orimax - orimin;
 colormap(gray)
 oimg = img;
@@ -35,7 +37,7 @@ count = 1; % 计数并用于储存新的最低桶
 Nopix = 0; % if比较对象
 
 while BelowBorder == 1
-  Nopix = Nopix + 1;
+  Nopix = Nopix + hist(count,1 ); % 每次改变一个桶的量
   count = count + 1;
   if Nopix > border
     BelowBorder = 0;
@@ -48,7 +50,7 @@ Nopix = 0;
 AboveBorder = 1;
 % 同理可得上限
 while AboveBorder == 1
-  Nopix = Nopix + 1;
+  Nopix = Nopix + hist(count, 1);
   count = count - 1;
   if Nopix > border
     AboveBorder = 0;
@@ -58,16 +60,16 @@ UpperBoundary = count + 1;
 
 % 更新最大最小灰度并进行覆盖
 newmin = LowerBoundary + orimin;
-newmax = UpperBoundary + orimax;
-
+newmax = UpperBoundary + orimin;
+% count已增加depth，偏移基础均为orimin
 % matlab中没有三目操作符只能逐个if
 for i = 1:512
   for j = 1:512
-    if img(i:j) < newmin
-      img(i:j) = newmin;
+    if img(i, j) < newmin
+      img(i, j) = newmin;
     end % 记得补上对应if的end
-    if img(i:j) > newmax
-      img(i:j) = newmax;
+    if img(i,j) > newmax
+      img(i, j) = newmax;
     end 
   end 
 end 
