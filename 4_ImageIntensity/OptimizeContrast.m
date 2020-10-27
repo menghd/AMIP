@@ -75,5 +75,5 @@ for i = 1:512
 end 
 
 img = round(128*(img - newmin)/(newmax - newmin));
-colormap(gray)
+colormap(gray) % 每次image前检查有无colormap
 image(img)
