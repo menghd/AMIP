@@ -7,6 +7,6 @@ img = transpose(img);
 rhomax = max(max(img)) % 可利用':'简写为max(img(:))
 rhomin = min(min(img)) % 此处与之前方法略微不同，可对比加深印象
 newimg = zeros(512);
-newimg = (img - rhomin)/(rhomax - rhomin)*64 % 直接全图处理填入
+newimg = (img - rhomin)/(rhomax - rhomin)*256; % 直接全图处理填入，原程序采用64亮度不够
 colormap(gray) % 显示用灰度图
 image(newimg)
