@@ -8,13 +8,10 @@ cimg = double(zeros(400, 400, 3)); % 生成用于存放最后彩色图片的三�
 maxr = max(imgr(:));
 maxg = max(imgg(:));
 maxb = max(imgb(:));
-for i = 1:400
-  for j = 1:400
-    imgr(:) = maxr - imgr(:);
-    imgg(:) = maxg - imgg(:);
-    imgb(:) = maxb - imgb(:);
-  end
-end
+% 直接逐个读入比for循环更快
+imgr(:) = maxr - imgr(:);
+imgg(:) = maxg - imgg(:);
+imgb(:) = maxb - imgb(:);
 % 为了合成彩色图片进行归一化
 imgr = imgr/maxr;
 imgg = imgg/maxg;
