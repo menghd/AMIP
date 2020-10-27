@@ -11,6 +11,6 @@ for rho = 0:255
 end
 % plot(sigmoid)
 transimage = zeros(261, 435);
-transimage(:) =  sigmoid(oimg(:) + 1, 1);
+transimage(:) =  sigmoid(oimg(:) + 1, 1); % 尽量减少for循环的使用，并注意下标
 colormap(gray)
-img(transimage)
+image(transimage) % 显示命令为image
