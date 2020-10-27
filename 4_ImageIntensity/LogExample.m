@@ -9,6 +9,6 @@ minrho = min(img(:));
 img = img - minrho + 1; % 避免log0
 img = log(img);
 maxr = max(img(:));
-img = img/maxr*64; % 可结合之前归一方式理解
+img = img/maxr*128; % 可结合之前归一方式理解，64普遍偏暗故换为128
 colormap(gray)
 image(img)
