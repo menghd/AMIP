@@ -68,11 +68,12 @@ for i = 1:512
     if img(i, j) < newmin
       img(i, j) = newmin;
     end % 记得补上对应if的end
-    if img(i,j) > newmax
+    if img(i, j) > newmax
       img(i, j) = newmax;
     end 
   end 
 end 
 
 img = round(128*(img - newmin)/(newmax - newmin));
-image(img) % 前面已指定colormap为gray
+colormap(gray)
+image(img)
